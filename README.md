@@ -1,0 +1,3 @@
+# neovim-docker
+
+Experimenting with neovim within docker as a portable editing solution...
