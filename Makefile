@@ -1,4 +1,4 @@
-IMAGE_VERSION=0.1.0
+IMAGE_VERSION=snapshot
 PASSWORD="super secret"
 
 build:
