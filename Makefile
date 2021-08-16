@@ -2,29 +2,29 @@ IMAGE_VERSION=snapshot
 PASSWORD="super secret"
 
 build:
-	docker build -t ckemper/neovim:${IMAGE_VERSION} .
+	docker build -t ckemper/neovim-core:${IMAGE_VERSION} .
 
 run:
 	docker run \
 	-v `pwd`:/work \
-  -it ckemper/neovim:${IMAGE_VERSION}
+  -it ckemper/neovim-core:${IMAGE_VERSION}
 
 run-sh:
 	docker run \
 	-v `pwd`:/work \
 	--entrypoint=ash \
-  -it ckemper/neovim:${IMAGE_VERSION}
+  -it ckemper/neovim-core:${IMAGE_VERSION}
 
 login:
 	docker login -u ckemper -p ${PASSWORD}
 
 publish:
 	docker push \
-		ckemper/neovim:${IMAGE_VERSION}
+		ckemper/neovim-core:${IMAGE_VERSION}
 
 publish-latest:
 	docker tag \
-		ckemper/neovim:${IMAGE_VERSION} \
-		ckemper/neovim:latest
+		ckemper/neovim-core:${IMAGE_VERSION} \
+		ckemper/neovim-core:latest
 	docker push \
-		ckemper/neovim:latest
+		ckemper/neovim-core:latest

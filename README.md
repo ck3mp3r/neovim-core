@@ -1,3 +1,3 @@
-# neovim-docker
+# neovim-core
 
-Experimenting with neovim within docker as a portable editing solution...
+Core neovim container used as a base container for more specialised applications.

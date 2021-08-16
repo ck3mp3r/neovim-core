@@ -32,7 +32,7 @@ RUN git clone --depth=1 --branch $NEOVIM_VERSION https://github.com/neovim/neovi
 
 FROM alpine:latest
 
-ARG TARGETPLATFORM
+ARG TARGETPLATFORM=linux/arm64
 
 ENV LANG en_GB.UTF-8
 ENV LANGUAGE en_GB:en
@@ -65,22 +65,7 @@ ENV PATH=$PATH:$HOME/.yarn/bin:$HOME/go/bin:$HOME/.local/bin
 
 RUN mkdir -p $XDG_CONFIG_HOME/nvim/plugin $XDG_CONFIG_HOME/nvim/after/plugin $HOME/.local/bin
 
-RUN yarn global add neovim pyright dockerfile-language-server-nodejs
-RUN GO111MODULE=on go get golang.org/x/tools/gopls@latest
-RUN ARCH=$( echo $TARGETPLATFORM | cut -d '/' -f 2 ) &&\
-    DOWNLOAD_URL=$(curl -s https://api.github.com/repos/hashicorp/terraform-ls/releases/latest | grep 'browser_' | cut -d'"' -f4 | grep 'linux' | grep $ARCH ) &&\
-    curl -L -o /tmp/terraform.zip $DOWNLOAD_URL
-RUN unzip /tmp/terraform.zip -d $HOME/.local/bin
-
-RUN git clone --depth=1 https://github.com/wbthomason/packer.nvim $HOME/.config/nvim/pack/packer/start/packer.nvim
-COPY neovim/init.vim $XDG_CONFIG_HOME/nvim
-COPY neovim/lua $XDG_CONFIG_HOME/nvim/lua
-RUN nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerInstall' &&\
-      nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
-
-USER root
-RUN rm -fr /tmp/*
-USER neo
+RUN yarn global add neovim
 
 WORKDIR /work
 
