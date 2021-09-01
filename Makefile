@@ -7,13 +7,13 @@ build:
 run:
 	docker run \
 	-v `pwd`:/work \
-  -it ckemper/neovim-core:${IMAGE_VERSION}
+  -it --rm ckemper/neovim-core:${IMAGE_VERSION}
 
-run-sh:
+sh:
 	docker run \
 	-v `pwd`:/work \
 	--entrypoint=ash \
-  -it ckemper/neovim-core:${IMAGE_VERSION}
+  -it --rm ckemper/neovim-core:${IMAGE_VERSION}
 
 login:
 	docker login -u ckemper -p ${PASSWORD}
