@@ -38,19 +38,7 @@ ENV LANG en_GB.UTF-8
 ENV LANGUAGE en_GB:en
 
 RUN apk add --update --no-cache \
-  curl \
-  git \
-  go \
-  gcc \
-  g++ \
-  libgcc \
-  python3-dev \
-  nodejs \
-  npm \
-  yarn
-
-RUN python3 -m ensurepip
-RUN pip3 install --no-cache --upgrade pip setuptools neovim
+  libgcc 
 
 COPY --from=0 /tmp/usr /usr
 
@@ -64,8 +52,6 @@ ENV XDG_CONFIG_HOME=$HOME/.config
 ENV PATH=$PATH:$HOME/.yarn/bin:$HOME/go/bin:$HOME/.local/bin
 
 RUN mkdir -p $XDG_CONFIG_HOME/nvim/plugin $XDG_CONFIG_HOME/nvim/after/plugin $HOME/.local/bin
-
-RUN yarn global add neovim
 
 WORKDIR /work
 
