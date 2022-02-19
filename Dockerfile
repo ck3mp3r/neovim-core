@@ -32,8 +32,6 @@ RUN git clone --depth=1 --branch $NEOVIM_VERSION https://github.com/neovim/neovi
 
 FROM alpine:latest
 
-ARG TARGETPLATFORM=linux/arm64
-
 ENV LANG en_GB.UTF-8
 ENV LANGUAGE en_GB:en
 
