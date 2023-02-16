@@ -1,5 +1,5 @@
 FROM alpine:latest as build
-ARG NEOVIM_VERSION=v0.8.1
+ARG NEOVIM_VERSION=v0.8.3
 
 RUN apk add --update --no-cache \
   git \
